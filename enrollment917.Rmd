@@ -1,0 +1,23 @@
+---
+title: "Enrollment as of 9/17/19"
+author: "Emmanuel Calivo"
+date: "9/24/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(tidyverse)
+library(janitor)
+```
+
+``` {r echo = FALSE}
+govenrollment <- read_xlsx("class_enrollment_summary_by_term_9.17.19.xlsx", skip = 3) %>%
+  clean_names() %>%
+  filter(course_department == "Government") %>%
+  arrange(desc(u_grad)) %>%
+  select(course_title, course_name, total)
+
+govenrollment
+```
